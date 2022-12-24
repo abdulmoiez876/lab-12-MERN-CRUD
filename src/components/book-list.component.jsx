@@ -3,6 +3,7 @@ import React, {
 } from 'react'
 import axios from 'axios';
 import Table from 'react-bootstrap/Table';
+import Button from 'react-bootstrap/Button';
 
 export default class BookList extends Component {
   constructor() {
@@ -59,7 +60,7 @@ export default class BookList extends Component {
     axios.get('http://localhost:4000/books').then(result => {
       console.log('done');
       this.setState({ books: result.data });
-      this.setState({loaded: true})
+      this.setState({ loaded: true })
     })
   }
   render() {
@@ -70,17 +71,15 @@ export default class BookList extends Component {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th style={{ width: "1vw" }}>ID</th>
-                <th style={{ width: "1vw" }}>Title</th>
-                <th style={{ width: "1vw" }}>Pages</th>
-                <th style={{ width: "1vw" }}>Date</th>
-                <th style={{ width: "15vw" }}>Short Description</th>
-                <th style={{ width: "15vw" }}>Long Description</th>
-                <th style={{ width: "1vw" }}>Status</th>
-                <th style={{ width: "1vw" }}>Authors</th>
-                <th style={{ width: "1vw" }}>Categories</th>
-                {/* <th style={{ width: "1vw" }}>ISBN</th> */}
-                {/* <th style={{ width: "12px" }}>URL</th> */}
+                <th>ID</th>
+                <th>Title</th>
+                <th>Pages</th>
+                <th>Date</th>
+                <th>Short Description</th>
+                <th>Status</th>
+                <th>Authors</th>
+                <th>Categories</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -92,12 +91,13 @@ export default class BookList extends Component {
                     <td>{book.pageCount}</td>
                     <td>{book.publishedDate}</td>
                     <td>{book.shortDescription}</td>
-                    <td>{book.longDescription?.slice(0, 200)}...</td>
                     <td>{book.status}</td>
                     <td>{book.authors}</td>
                     <td>{book.categories}</td>
-                    {/* <td>{book.isbn}</td> */}
-                    {/* <td style={{ width: "12px" }}>{book.thumbnailUrl}</td> */}
+                    <td className='d-flex flex-column'>
+                      <Button variant="warning">Edit</Button>{' '}
+                      <Button variant="danger">Delete</Button>{' '}
+                    </td>
                   </tr>
                 )
               })}
