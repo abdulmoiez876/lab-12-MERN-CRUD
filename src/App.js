@@ -14,6 +14,8 @@ import EditStudent from './components/edit-student.component'
 import StudentList from './components/student-list.component'
 
 import BookList from './components/book-list.component'
+import EditBook from './components/edit-book.component'
+import CreateBook from './components/create-book.component'
 
 function App() {
   return (
@@ -40,8 +42,14 @@ function App() {
                     List Students
                   </Link>
                 </Nav>
-                <Nav>
 
+                <Nav>
+                  <Link to={'/create-book'} className="nav-link">
+                    Create Book
+                  </Link>
+                </Nav>
+
+                <Nav>
                   <Link to={'/book-list'} className="nav-link">
                     List Books
                   </Link>
@@ -80,7 +88,19 @@ function App() {
                     exact
                     path="/book-list"
                     // component={(props) => <BookList {...props} />}
-                    component={() => <BookList />}
+                    component={(props) => <BookList {...props}/>}
+                  />
+                  <Route
+                    exact
+                    path="/create-book"
+                    // component={(props) => <BookList {...props} />}
+                    component={(props) => <CreateBook {...props}/>}
+                  />
+                  <Route
+                    exact
+                    path="/edit-book/:id"
+                    // component={(props) => <BookList {...props} />}
+                    component={(props) => <EditBook {...props}/>}
                   />
                 </Switch>
               </div>
