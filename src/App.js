@@ -13,6 +13,8 @@ import CreateStudent from './components/create-student.component'
 import EditStudent from './components/edit-student.component'
 import StudentList from './components/student-list.component'
 
+import BookList from './components/book-list.component'
+
 function App() {
   return (
     <div className="App">
@@ -36,6 +38,12 @@ function App() {
                 <Nav>
                   <Link to={'/student-list'} className="nav-link">
                     List Students
+                  </Link>
+                </Nav>
+                <Nav>
+
+                  <Link to={'/book-list'} className="nav-link">
+                    List Books
                   </Link>
                 </Nav>
               </Nav>
@@ -67,6 +75,12 @@ function App() {
                     exact
                     path="/student-list"
                     component={(props) => <StudentList {...props} />}
+                  />
+                  <Route
+                    exact
+                    path="/book-list"
+                    // component={(props) => <BookList {...props} />}
+                    component={() => <BookList />}
                   />
                 </Switch>
               </div>

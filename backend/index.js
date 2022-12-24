@@ -4,11 +4,14 @@ let cors = require('cors');
 let bodyParser = require('body-parser');
 
 // Express Route
-const studentRoute = require('../backend/routes/student.route')
+const studentRoute = require('../backend/routes/student.route');
+const booksRoute = require('../backend/routes/books.route');
+
 
 // Connecting mongoDB Database
 mongoose
-  .connect('mongodb://127.0.0.1:27017/mern-crud')
+  .connect('mongodb+srv://lab12API:Qv1dgLmHXXtEUKew@lab12cluster.qrzcovh.mongodb.net/test')
+  // .connect('mongodb://127.0.0.1:27017/mern-crud')
   .then((x) => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -22,7 +25,8 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cors());
-app.use('/students', studentRoute)
+app.use('/students', studentRoute);
+app.use(booksRoute);
 
 
 // PORT
